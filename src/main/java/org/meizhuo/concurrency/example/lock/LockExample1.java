@@ -1,7 +1,7 @@
-package org.meizhuo.concurrency;
+package org.meizhuo.concurrency.example.lock;
 
+import com.mmall.concurrency.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
-import org.meizhuo.concurrency.annoations.NotThreadSafe;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -9,8 +9,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 @Slf4j
-@NotThreadSafe
-public class ConcurrencyTest {
+@ThreadSafe
+public class LockExample1 {
 
     // 请求总数
     public static int clientTotal = 5000;
@@ -41,7 +41,7 @@ public class ConcurrencyTest {
         log.info("count:{}", count);
     }
 
-    private static void add() {
+    private synchronized static void add() {
         count++;
     }
 }

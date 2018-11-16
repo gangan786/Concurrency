@@ -1,17 +1,16 @@
-package org.meizhuo.concurrency;
+package org.meizhuo.concurrency.example.threadLocal;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@Slf4j
-public class TestController {
+@RequestMapping("/threadLocal")
+public class ThreadLocalController {
 
     @RequestMapping("/test")
     @ResponseBody
-    public String test() {
-        return "test";
+    public Long test() {
+        return RequestHolder.getId();
     }
 }

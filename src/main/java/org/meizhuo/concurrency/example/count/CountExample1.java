@@ -1,4 +1,5 @@
-package org.meizhuo.concurrency;
+package org.meizhuo.concurrency.example.count;
+
 
 import lombok.extern.slf4j.Slf4j;
 import org.meizhuo.concurrency.annoations.NotThreadSafe;
@@ -10,7 +11,7 @@ import java.util.concurrent.Semaphore;
 
 @Slf4j
 @NotThreadSafe
-public class ConcurrencyTest {
+public class CountExample1 {
 
     // 请求总数
     public static int clientTotal = 5000;
