@@ -1,7 +1,7 @@
 package org.meizhuo.concurrency.example.atomic;
 
-import com.mmall.concurrency.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
+import org.meizhuo.concurrency.annoations.ThreadSafe;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

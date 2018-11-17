@@ -1,7 +1,8 @@
 package org.meizhuo.concurrency.example.atomic;
 
-import com.mmall.concurrency.annoations.ThreadSafe;
+
 import lombok.extern.slf4j.Slf4j;
+import org.meizhuo.concurrency.annoations.ThreadSafe;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -44,6 +45,7 @@ public class AtomicExample6 {
 
     private static void test() {
         if (isHappened.compareAndSet(false, true)) {
+            //可以让某段代码只执行一次不会重复
             log.info("execute");
         }
     }
