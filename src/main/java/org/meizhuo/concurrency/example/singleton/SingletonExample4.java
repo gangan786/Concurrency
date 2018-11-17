@@ -1,6 +1,7 @@
 package org.meizhuo.concurrency.example.singleton;
 
-import com.mmall.concurrency.annoations.NotThreadSafe;
+
+import org.meizhuo.concurrency.annoations.NotThreadSafe;
 
 /**
  * 懒汉模式 -》 双重同步锁单例模式

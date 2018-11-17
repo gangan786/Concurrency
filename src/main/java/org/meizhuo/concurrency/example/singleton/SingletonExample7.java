@@ -1,7 +1,7 @@
 package org.meizhuo.concurrency.example.singleton;
 
-import com.mmall.concurrency.annoations.Recommend;
-import com.mmall.concurrency.annoations.ThreadSafe;
+import org.meizhuo.concurrency.annoations.Recommend;
+import org.meizhuo.concurrency.annoations.ThreadSafe;
 
 /**
  * 枚举模式：最安全

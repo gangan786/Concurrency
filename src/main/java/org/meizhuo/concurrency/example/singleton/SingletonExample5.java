@@ -1,6 +1,7 @@
 package org.meizhuo.concurrency.example.singleton;
 
-import com.mmall.concurrency.annoations.ThreadSafe;
+
+import org.meizhuo.concurrency.annoations.ThreadSafe;
 
 /**
  * 懒汉模式 -》 双重同步锁单例模式
@@ -23,9 +24,9 @@ public class SingletonExample5 {
 
     // 静态的工厂方法
     public static SingletonExample5 getInstance() {
-        if (instance == null) { // 双重检测机制        // B
+        if (instance == null) { // 双重检测机制  第一次判空      // B
             synchronized (SingletonExample5.class) { // 同步锁
-                if (instance == null) {
+                if (instance == null) { //第二次判空
                     instance = new SingletonExample5(); // A - 3
                 }
             }

@@ -1,6 +1,7 @@
 package org.meizhuo.concurrency.example.singleton;
 
-import com.mmall.concurrency.annoations.NotThreadSafe;
+
+import org.meizhuo.concurrency.annoations.NotThreadSafe;
 
 /**
  * 懒汉模式
@@ -19,6 +20,8 @@ public class SingletonExample1 {
 
     // 静态的工厂方法
     public static SingletonExample1 getInstance() {
+        //如果有多个线程同时访问这段代码，获得为null的信号，
+        //那么必然会产生多个实例，违背了单例
         if (instance == null) {
             instance = new SingletonExample1();
         }
