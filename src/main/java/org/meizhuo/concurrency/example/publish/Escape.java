@@ -1,8 +1,9 @@
 package org.meizhuo.concurrency.example.publish;
 
-import com.mmall.concurrency.annoations.NotRecommend;
-import com.mmall.concurrency.annoations.NotThreadSafe;
+
 import lombok.extern.slf4j.Slf4j;
+import org.meizhuo.concurrency.annoations.NotRecommend;
+import org.meizhuo.concurrency.annoations.NotThreadSafe;
 
 @Slf4j
 @NotThreadSafe

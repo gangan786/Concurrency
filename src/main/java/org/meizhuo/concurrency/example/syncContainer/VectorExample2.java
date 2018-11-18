@@ -1,6 +1,7 @@
 package org.meizhuo.concurrency.example.syncContainer;
 
-import com.mmall.concurrency.annoations.NotThreadSafe;
+
+import org.meizhuo.concurrency.annoations.NotThreadSafe;
 
 import java.util.Vector;
 

@@ -1,10 +1,11 @@
 package org.meizhuo.concurrency.example.commonUnsafe;
 
-import com.mmall.concurrency.annoations.ThreadSafe;
+
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.meizhuo.concurrency.annoations.ThreadSafe;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -46,5 +47,6 @@ public class DateFormatExample3 {
 
     private static void update(int i) {
         log.info("{}, {}", i, DateTime.parse("20180208", dateTimeFormatter).toDate());
+
     }
 }

@@ -133,7 +133,7 @@ public class AtomicExample5 {
 
 ### 5-1 安全发布对象 发布与逸出
 
-####问题
+#### 问题
 
 + 对象逸出，对象未完成构造之前不可以将其发布（可选用工厂模式等）
 + 对象可见性，在对象可见范围之外出现该对象的引用
@@ -240,4 +240,132 @@ public class SingletonExample5 {
    - 其实以上的各种情况出现的根本原因是：因为各线程发生切换的点不同
      1. 第一种发生切换的点是：第一次判空之后获得同步锁之前
      2. 第二种发生切换的点是：获得锁之后第二次判空之前
+
+
+
+
+
+### 6-1 不可变对象
+
+	#### 不可变对象需要满足的条件
+
++ 对象创建以后状态就不能修改
++ 对象所有域都是final类型
++ 对象是正确创建的（在对象创建期间，this引用没有逸出）
+
+#### final关键字：类，方法，变量
+
++ 重点在于final修饰的变量特性
+
+### 6-2不可变对象
+
+对集合中的元素的修改和添加操作进行限制或者说禁止
+
++ `java.util.Collections`提供的`unmodifiable***()`方法可以实现集合里面的元素具有final的不可变性
++ `com.google.common.collect`中的各种`Immutable***`类
+
+
+
+### 6-3,6-4 线程封闭
+
++ Ad-hoc线程封闭：程序控制实现，效果差，古老，不建议使用，忽略
++ 堆栈封闭：局部变量，无并发问题
++ ThreadLocal线程封闭：强烈推荐使用
+
+
+
+### 6-5,6-6 线程不安全类与写法
+
++ StringBuilder （线程不安全） -->  StringBuffer （线程安全）
+
+  两种字符串容器的使用场景，优缺点
+
++ SimpleDateFormat（线程不安全）--> JodaTime：当多个线程共享同一个SimpleDateFormat并对其进行操作时会抛出异常，一般的处理方法是将其定义为局部变量，利用堆栈封闭保证当前只要单个线程对其进行操作。JodaTime是一个第三方库，保证线程安全，不会出现上面这种情况。但是他们之间的关系并不是像StringBuilder和StringBuffer，因为JodaTime的实现（不仅在性能方面）比SimpleDateFormat好很多。所以推荐使用JodaTime 
+
+  ~~~xml
+  <dependency>
+  	<groupId>joda-time</groupId>
+  	<artifactId>joda-time</artifactId>
+  	<version>2.9</version>
+  </dependency>
+  ~~~
+
++ ArrayList，HashSet，HashMap（线程不安全）等Collections
+
++ 先检查再执行：if(condition(a)){handle(a)}：类比DCL的判空处理导致的线程不安全
+
+
+
+### 6-7,6-8 同步容器
+
++ ArrayList --> Vector,Stack
+
+  对于Vector来说他的add等大部分方法都使用了synchronized修饰，但这并不意味着它是绝对线程安全的类，视屏中使用如下代码验证，即在两个线程中一个get元素，一个remove元素，这样会因为get到remove掉的元素而**java.lang.ArrayIndexOutOfBoundsException**异常，个人认为这种问题比较难解决，把他视为线程不安全的理由有点牵强，这更涉及到逻辑层面的问题
+
+  ~~~java
+  package org.meizhuo.concurrency.example.syncContainer;
+  import org.meizhuo.concurrency.annoations.NotThreadSafe;
+  import java.util.Vector;
+  
+  @NotThreadSafe
+  public class VectorExample2 {
+  
+      private static Vector<Integer> vector = new Vector<>();
+  
+      public static void main(String[] args) {
+  
+          while (true) {
+  
+              for (int i = 0; i < 10; i++) {
+                  vector.add(i);
+              }
+  
+              Thread thread1 = new Thread() {
+                  public void run() {
+                      for (int i = 0; i < vector.size(); i++) {
+                          vector.remove(i);
+                      }
+                  }
+              };
+  
+              Thread thread2 = new Thread() {
+                  public void run() {
+                      for (int i = 0; i < vector.size(); i++) {
+                          vector.get(i);
+                      }
+                  }
+              };
+              thread1.start();
+              thread2.start();
+          }
+      }
+  }
+  
+  ~~~
+
+  关于Vector还有一个遍历问题：
+
++ HashMap --> HashTable(key,value不能为空)
+
++ Collection.synchronizedXXX(List,Set,Map)
+
+  **出于性能与功能性的考虑，现在比较少用同步容器，转而使用并发容器进行替代**
+
+
+### 6-9 并发容器  J.U.C
+
+#### 简单使用介绍
+
++ ArrayList --> CopyOnWriteArrayList
++ HashSet，TreeSet --> CopyOnWriteArraySet，ConcurrentSkipListSet
++ HashMap，TreeMap --> ConcurrentHashMap，ConcurrentSkipListMap
+
+
+
+#### 安全共享对象策略-总结
+
++ 线程限制：一个被线程限制的对象，有线程独占，并且只能被占有她的线程修改（ThreadLocal）
++ 共享只读：一个共享只读的对象，在没有额外同步的情况下，可以被多个线程并发访问，但是任何线程都不能修改他（不可变对象）
++ 线程安全对象：一个线程安全的对象或者容器，在内部通过同步机制来保证线程安全，所以其他线程无需额外的同步就可以通过公共接口随意访问它（同步容器）
++ 被守护对象：被守护对象只能通过获取特定的锁来访问（并发容器 ）
 

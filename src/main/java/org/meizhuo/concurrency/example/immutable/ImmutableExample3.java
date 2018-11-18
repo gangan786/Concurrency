@@ -3,7 +3,7 @@ package org.meizhuo.concurrency.example.immutable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.mmall.concurrency.annoations.ThreadSafe;
+import org.meizhuo.concurrency.annoations.ThreadSafe;
 
 @ThreadSafe
 public class ImmutableExample3 {
@@ -20,5 +20,6 @@ public class ImmutableExample3 {
 
     public static void main(String[] args) {
         System.out.println(map2.get(3));
+
     }
 }

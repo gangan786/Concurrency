@@ -1,7 +1,7 @@
 package org.meizhuo.concurrency.example.commonUnsafe;
 
-import com.mmall.concurrency.annoations.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;
+import org.meizhuo.concurrency.annoations.NotThreadSafe;
 
 import java.util.ArrayList;
 import java.util.List;

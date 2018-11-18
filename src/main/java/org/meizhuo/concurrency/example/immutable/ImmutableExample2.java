@@ -1,8 +1,9 @@
 package org.meizhuo.concurrency.example.immutable;
 
 import com.google.common.collect.Maps;
-import com.mmall.concurrency.annoations.ThreadSafe;
+
 import lombok.extern.slf4j.Slf4j;
+import org.meizhuo.concurrency.annoations.ThreadSafe;
 
 import java.util.Collections;
 import java.util.Map;

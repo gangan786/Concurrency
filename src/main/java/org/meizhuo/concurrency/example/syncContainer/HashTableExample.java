@@ -1,7 +1,7 @@
 package org.meizhuo.concurrency.example.syncContainer;
 
-import com.mmall.concurrency.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
+import org.meizhuo.concurrency.annoations.ThreadSafe;
 
 import java.util.HashMap;
 import java.util.Hashtable;

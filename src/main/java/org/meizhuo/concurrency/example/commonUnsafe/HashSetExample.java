@@ -1,6 +1,6 @@
 package org.meizhuo.concurrency.example.commonUnsafe;
 
-import com.mmall.concurrency.annoations.NotThreadSafe;
+import org.meizhuo.concurrency.annoations.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashSet;
