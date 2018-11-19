@@ -30,6 +30,7 @@ public class CountDownLatchExample2 {
                 }
             });
         }
+        //下面表示10毫秒过后将不再阻塞main方法所在的线程，继续往下执行输出finish
         countDownLatch.await(10, TimeUnit.MILLISECONDS);
         log.info("finish");
         exec.shutdown();

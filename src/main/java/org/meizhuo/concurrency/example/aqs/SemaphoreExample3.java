@@ -25,6 +25,8 @@ public class SemaphoreExample3 {
                     if (semaphore.tryAcquire()) { // 尝试获取一个许可
                         test(threadNum);
                         semaphore.release(); // 释放一个许可
+                    } else {
+                        log.info("获取失败：" + threadNum);
                     }
                 } catch (Exception e) {
                     log.error("exception", e);
@@ -36,6 +38,6 @@ public class SemaphoreExample3 {
 
     private static void test(int threadNum) throws Exception {
         log.info("{}", threadNum);
-        Thread.sleep(1000);
+
     }
 }

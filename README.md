@@ -369,3 +369,42 @@ public class SingletonExample5 {
 + 线程安全对象：一个线程安全的对象或者容器，在内部通过同步机制来保证线程安全，所以其他线程无需额外的同步就可以通过公共接口随意访问它（同步容器）
 + 被守护对象：被守护对象只能通过获取特定的锁来访问（并发容器 ）
 
+
+
+
+
+
+
+
+
+### 7-1  J.U.C之 AQS
+
+AbstractQueuedSynchronizer -- AQS：J.U.C的核心
+
+
+
+### 7-2 ,7-3,7-4,7-5,7-6 AQS同步组件
+
++ CountDownLatch
+
+  适用场景：将复杂过程拆分为多个子线程任务，当所有子线程任务都完成以后才进行下一步的统计操作处理
+
++ Semaphore：信号量
+
+  对指定代码做并发处理，实现让代码以指定的并发数进行执行
+
++ CyclicBarrier
+
+  类似于CountDownLatch
+
+  使用思想类似于：当线程都执行到某指定步骤后await，直到其他所有线程都在await说明ready好下一步操作，这时所有线程又开始继续下一步执行
+
++ ReentrantLock
+
+  高性能要求可以使用，不过相对于synchronized来说使用稍微复杂，不利于调试检测
+
++ ReentrantReadWriterLock
+
+  读写锁分离，适用于对共享数据进行同步封装
+
++ StampedLock
