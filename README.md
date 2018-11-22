@@ -408,3 +408,34 @@ AbstractQueuedSynchronizer -- AQS：J.U.C的核心
   读写锁分离，适用于对共享数据进行同步封装
 
 + StampedLock
+
+
+
+
+
+
+
+### 8-1，8-2，8-3，8-4 J.U.C组件拓展
+
++ Callable：线程内容执行主体
++ Future：获取线程执行结果
++ FutureTask：线程内容执行主体
++ Fork/Join：用于任务的拆分
++ BlockingQueue：生产者消费者
+  + ArrayBlockingQueue
+  + DelayQueue
+  + LinkedBlockingQueue
+  + PriorityBlockingQueue
+  + SynchronousQueue
+
+
+
+
+
+### 9-1 线程池
+
++ new Thread 弊端
++ 线程池的好处   
+
+
+
