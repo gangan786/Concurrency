@@ -435,7 +435,89 @@ AbstractQueuedSynchronizer -- AQS：J.U.C的核心
 ### 9-1 线程池
 
 + new Thread 弊端
+  + 每次new Thread 新建对象，性能差
+  + 线程缺乏统一的管理，可能无限制的新建线程，相互竞争，有可能占用过多的系统资源导致死机或OOM
+  + 缺少更多功能，如更多执行，定期执行，线程中断
+  + API调用容易出问题
 + 线程池的好处   
+  + 重用存在的线程，减少对象的创建，消亡的开销，性能好
+  + 可有效的控制最大并发线程数，提高系统资源利用率，同时可以避免过多资源竞争，避免阻塞
+  + 提供定时执行，单线程，并发数控制等功能 
++ 线程池的几种状态
++ ThreadPoolExecutor 参数说明
+  + corePoolSize：核心线程数
+  + maximumPoolSize：最大线程数
+  + workQueue：阻塞队列，存储等待执行的任务，对线程池的运行过程有重大影响
+  + keepAliveTime：线程没有任务时，存活的最长时间
+  + unit：keepAliveTime的时间单位
+  + threadFactory：线程工厂，用来创建线程
+  + rejectHandle：当拒绝处理任务时的策略，四种
+    + 直接抛出异常（默认）
+    + 用调用者所在的线程来执行任务
+    + 丢弃队列中最前的任务，并执行当前任务
+    + 直接丢弃这个任务，不做任何处理
++ ThreadPoolExecutor 方法
+  + execute()：提交任务，有线程池选取线程执行
+  + submit()：提交任务，能够返回执行结果
+  + shutdown()：等待任务都执行完关闭线程，释放资源
+  + shutdownNow()：立即关闭线程池，不等待任务执行完毕
+  + getTaskCount()：获取线程池已执行和未执行的任务总数
+  + getCompletedTaskCount()：已完成的任务数量
+  + getPoolSize()：线程池当前的线程数量
+  + getActiveCount()：当前线程池中正在执行任务的线程数量
+
+
+
+### 9-2，9-3 Executor框架接口
+
++   方法介绍，返回的是线程池
+  + Executors.newCachedThreadPool()
+  + Executors.newFixedThreadPool()
+  + Executors.newScheduledThreadPool()
+  + Executors.newSingleThreadExecutor()
++ 线程池的合理配置
+
+
+
+### 10-1 死锁
+
++ 必要条件
++ 如何避免死锁的java解决方案
+
+
+
+### 10-2 多线程并发最佳实践
+
++ 使用本地变量
++ 使用不可变类
++ 最小化锁的作用域范围
++ 使用线程池的Executor，而不是直接new Thread执行
++ 宁可使用同步也不要使用线程的wait和notify
++ 使用BlockingQueue实现生产-消费模式
++ 使用并发集合而不是加了锁的同步集合
++ 使用Semaphore创建有界的访问
++ 宁可使用同步代码块，也不使用同步的方法
++ 避免使用静态变量
+
+
+
+### 10-3 Spring与线程安全
+
+单例，多例的依赖注入
+
+spring并不保证并发的同步，所以需要自己额外增加措施
+
+
+
+### 10-4 HashMap与ConcurrentHashMap
+
+
+
+
+
+
+
+
 
 
 
