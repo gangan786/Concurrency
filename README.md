@@ -2,7 +2,12 @@
 
 用于并发知识学习
 
-知识点总结
++ 以下内容总结自书籍：[精通java并发编程](https://book.douban.com/subject/30327401/)
+  + 具体内容按章节的形式进行组织，快捷地址 [——>>](https://github.com/gangan786/Concurrency/tree/master/src/main/java/org/meizhuo/concurrency/example_master)
+
++ 以下内容总结自慕课网课程：[Java并发编程入门与高并发面试](https://coding.imooc.com/class/195.html)
+
+  知识点总结
 
 ### 4-1 原子性
 
